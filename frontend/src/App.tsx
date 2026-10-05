@@ -1,19 +1,20 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
 
-//import Navbar from "./components/Navbar";
-import WhoAmI from "./pages/WhoAmI";
-//import Projects from "./pages/Projects";
-//import Blog from "./pages/Blog";
+import { Navbar } from "./components/Navbar";
+import { Home, WhoAmI, Projects, Blog } from "./components/pages";
 
 function App() {
     return (
-        <BrowserRouter>
+        <div className="App">
+            <Navbar />
             <Routes>
-                <Route path="/" element={<WhoAmI />} />
-                {/* <Route path="/projects" element={<Projects />} />
-                <Route path="/blogs" element={<Blog />} /> */}
+                <Route path="/" element={<Home />} />
+                <Route path="/WhoAmI" element={<WhoAmI />} />
+                <Route path="/Projects" element={<Projects />} />
+                <Route path="/Blog" element={<Blog />} />
             </Routes>
-        </BrowserRouter>
+        </div>
     );
 }
 
