@@ -1,36 +1,36 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+import { NavbarLink } from "../services/NavbarLink.tsx";
 
 import "./Navbar.css";
 
 export const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
+    const navItems = [
+        { name: "WhoAmI", path: "/WhoAmI" },
+        { name: "Projects", path: "/Projects" },
+        { name: "Blog", path: "/Blog" },
+    ];
+
     return (
         <nav>
             <Link to="/" className="title">
-                Website
+                Mark Wilbrink
             </Link>
-            <div
-                className="menu"
-                onClick={() => {
-                    setMenuOpen(!menuOpen);
-                }}
-            >
+            <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
+
             <ul className={menuOpen ? "open" : ""}>
-                <li>
-                    <NavLink to="/WhoAmI">WhoAmI</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/Projects">Projects</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/Blog">Blog</NavLink>
-                </li>
+                {navItems.map((item) => (
+                    <li key={item.path}>
+                        <NavbarLink to={item.path}>{item.name}</NavbarLink>
+                    </li>
+                ))}
             </ul>
         </nav>
     );
